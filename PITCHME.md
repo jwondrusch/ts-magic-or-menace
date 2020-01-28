@@ -1,7 +1,9 @@
 ## TypeScript<br/>in the Field
+
 ## **Magic or Menace?**
 
 Note:
+
 - Title
 - Thank you
 - Seeing TS More Often. Ranting, Raving
@@ -17,6 +19,7 @@ Note:
 - Application Architect @ **The Lead Group**
 
 Note:
+
 - Leading teams using TypeScript across the Lead Generation, Industrial Construction and Educational industries
 - Small teams
 - Collaboration
@@ -26,6 +29,7 @@ Note:
 ## **Playground** vs <strong class="text-yellow">Production</strong>
 
 Note:
+
 - Seen people pulling their hair out
 - Seen the lightbulb that goes off when TypeScript "clicks"
 
@@ -61,11 +65,12 @@ Note:
 
 "TypeScript is a typed superset of JavaScript that <strong class="text-yellow"><u>compiles</u></strong> to plain JavaScript."
 
-
 ---
 
 ## Why Use TypeScript?
+
 Note:
+
 - Million Dollar Question
 - You as a developer or as a team
 - How would you defend to your boss?
@@ -83,31 +88,34 @@ Note:
 ## **Magic** or <br/> Menace?
 
 Note:
-- What are the trade-offs?
-- It is not always pain free.
 
+- What are the magical elements of TypeScript?
 
 ---
+
 ## TypeScript<br/>**Does Not Exist**
 
 Note:
+
 - Compiled
+- Explain TypeScript Playground
 
 ---
 
 @snap[north span-100]
-## Where Did It Go?
+
+## Missing Person
+
 @snapend
 
 ```ts
 // TypeScript
-type Hobby = 'running' | 'reading' | 'gaming' | 'painting' | 'other';
+type Hobby = "running" | "reading" | "gaming" | "painting" | "other";
 
 interface Person {
-    name: string;
-    phone: string;
-    age: number;
-    hobby: Hobby;
+  name: string;
+  phone: string;
+  hobby: Hobby;
 }
 
 const callPerson = (person: Person): void => console.log(person.phone);
@@ -116,71 +124,164 @@ const callPerson = (person: Person): void => console.log(person.phone);
 ---
 
 @snap[north span-100]
-## Where Did It Go?
+
+## Missing Person
+
 @snapend
 
 ```js
 // JavaScript
 "use strict";
-const callPerson = (person) => console.log(person.phone);
+const callPerson = person => console.log(person.phone);
 ```
+
+Note:
+
+- Pre-Compile vs Post-Compile
+- TypeScript doesn't let you be irresponsible
 
 ---
 
-## TypeScript<br/>**Watches Your Back**
+## TypeScript <br/>**Watches Your Back**
+
+Note:
+
+- TS is always paying attention
+- Knows your code better than you do
+- Uses a built-in NodeJS debugger to monitor your code as you write it
+- Easy to see with an example
 
 ---
 
 #### EXAMPLE
+
 ## Increment<br/>**an Array**
 
 ---
 
-```js
-// JS
-const increment = (num) => num + 1;
-const incrementAll = (arr) => arr.map(increment);
-
-let input = [1, 2, 3, 4, 5];
-
-console.log(incrementAll(input)); // [2, 3, 4, 5, 6];
-```
----
-
-```js
-// JS
-input = ['a', 'b', 'c'];
-
-console.log(incrementAll(input)); // ['a1', 'b1', 'c1'];
-```
----
-```ts
-// TS
-const increment = (num: number): number => num + 1;
-const incrementAll = (arr: number[]): number[] => arr.map(increment);
-
-let input = [1, 2, 3, 4, 5];
-
-console.log(incrementAll(input)); // [2, 3, 4, 5, 6];
-
-input = ['a', 'b', 'c']; // Compiler error
-```
----
-
-## Type **Inference**
-
----
 @snap[north span-100]
-## Type Inference
+
+## Increment an Array
+
+@snapend
+
+```js
+// JS
+const increment = num => num + 1;
+const incrementAll = arr => arr.map(increment);
+
+console.log(incrementAll([1, 2, 3, 4, 5])); // [2, 3, 4, 5, 6];
+```
+
+---
+
+@snap[north span-100]
+
+## Increment an Array
+
+@snapend
+
+```js
+// JS
+console.log(increment(undefined)); // NaN
+console.log(incrementAll(["a", "b", "c"])); // ['a1', 'b1', 'c1'];
+```
+
+---
+
+@snap[north span-100]
+
+## Increment an Array
+
 @snapend
 
 ```ts
 // TS
-let numArray = [1, 2, 3, 4, 5]; // number[]
-let strArray = ['a', 'b', 'c']; // string[]
+const increment = (num: number): number => num + 1;
+console.log(increment(3)); // 4
+console.log(increment(undefined)); // Woops! You can't do that.
 
-let num = 6;
-let str = 'a';
+const incrementAll = (nums: Array<number>): Array<number> =>
+  nums.map(increment);
+console.log(incrementAll([1, 2, 3, 4, 5])); // [2, 3, 4, 5, 6]
+console.log(incrementAll(["a", "b", "c"])); // Woops! You can't do that.
+```
+
+Note:
+
+- Basic example, but compare to authenticated vs unauthenticated users
+
+---
+
+## Fail **Early**
+
+Note:
+
+- What is a REPL?
+- TS REPL vs JS REPL
+- Making mistakes is good
+
+---
+
+@snap[north span-100]
+
+## Fail Early
+
+@snapend
+
+```ts
+// TS
+interface Person {
+  name: string;
+  phone: string;
+}
+
+const callPerson = (person: Person): void => console.log(person.phone);
+
+// Elsewhere in our application...
+callPerson("555-555-5555");
+```
+
+---
+
+@snap[north span-100]
+
+## Fail Early
+
+@snapend
+
+![IMAGE](assets/img/tiny-error.png)
+
+Note:
+
+- Instant feedback shortens the loop
+- Works on very complex types, which makes it more valuable than ESLint can be
+- Like React PropTypes, but works from anywhere in your application, on any data types
+
+---
+
+## Type **Inference**
+
+Note:
+
+- How does TS keep track of everything? Type Inference
+- Looking at the values that you pass into variables
+
+---
+
+@snap[north span-100]
+
+## Type Inference
+
+@snapend
+
+```ts
+// TS
+const numArray = [1, 2, 3, 4, 5]; // number[]
+const strArray = ["a", "b", "c"]; // string[]
+
+let num = 6; // number
+let str = "a"; // string
 
 numArray.push(num); // OK!
 strArray.push(str); // OK!
@@ -188,44 +289,23 @@ strArray.push(str); // OK!
 numArray.push(str); // Nope! Compiler Error
 strArray.push(num); // Nope! Compiler Error
 ```
----
 
-## Fail **Early**
+Note:
 
----
-
-@snap[north span-100]
-## Fail Early
-@snapend
-
-```ts
-// TS
-interface Person {
-    name: string;
-    phone: string;
-}
-
-const callPerson = (person: Person): void => console.log(person.phone);
-
-const phone = '555-555-5555';
-
-callPerson(phone);
-```
-
----
-@snap[north span-100]
-## Fail Early
-@snapend
-![IMAGE](assets/img/tiny-error.png)
+- Ensures that data and operations work correctly together.
 
 ---
 
 @snap[north span-100]
+
 ## Keep Your **Tools**
+
 @snapend
 
 @snap[west]
+
 ### JS
+
 - ESLint
 - Libraries
 - Frameworks
@@ -235,25 +315,28 @@ callPerson(phone);
 @snapend
 
 @snap[east text-left]
+
 ### TS
+
 - TSLint
 - Libraries
 - Frameworks
 - Tests
 - `tsc watch`
-@snapend
+  @snapend
 
 ---
 
 ## Magic or <br/> **Menace?**
 
 Note:
+
 - What are the trade-offs?
 - It is not always pain free.
 
 ---
 
-# Debugging
+# **Debugging**
 
 ---
 
@@ -267,6 +350,12 @@ Note:
 
 ![IMAGE](assets/img/scary-error.png)
 
+Note:
+
+- 3rd party libraries, Deeply nested components, Complex types
+- Develop skill in diagosing problems
+- Remember that TS does not exist
+
 ---
 
 ## **Types !==** Values
@@ -274,29 +363,43 @@ Note:
 ---
 
 @span[north]
+
 ## Types !== Values
+
 @spanend
+
 ```ts
 interface Person {
-    name: string;
-    phone: string;
+  name: string;
+  phone: string;
 }
 
-const person = { name: 'Jonathan', phone: '555-555-5555' };
+const jonathan: Person = { name: "Jonathan", phone: "555-555-5555" };
 
-console.log(typeof person === Person); // false
-console.log(person instanceof Person); // Compiler Error
+console.log(typeof jonathan === Person); // false
+console.log(jonathan instanceof Person); // Compiler Error
 
-console.log('WTF');
+console.log("Huh?"); // Take a deep breath
 ```
 
 ---
 
-## Expect<br/>**Resistance**
+@span[north]
+
+## Types !== Values
+
+@spanend
+
+```ts
+const isPerson = (val: Object): val is Person {
+    return typeof val.name === 'string' && typeof val.phone === 'string';
+}
+```
 
 Note:
-- Polarizing
-- JavaScript that Scales.
+
+- Type Guards are extraordinary, but not obvious.
+- Perform type narrowing
 
 ---
 
@@ -305,73 +408,48 @@ Note:
 ![IMAGE](assets/img/your-plan.png)
 
 Note:
+
 - External libraries
 - Refactoring
--
 
 ---
 
-## Resist the Urge
+## Expect<br/>**Resistance**
 
 Note:
 
-- Not everything is a type, but you'll be tempted to think of them that way.
-- Types can help communicate, but they don't encapsulate everything
-- Tight coupling is still a concern that you need to carefully monitor for.
+- Polarizing
+- JavaScript that Scales.
 
 ---
 
-## **any**<br/>is the enemy
-
----
-
-```typescript
-const MyButtonComponent: React.FC<MyButtomComponentProps> = () => {
-  const handleClick = (e) => {
-    console.log(e);
-  };
-
-  return (
-    <button onClick={handleClick}>
-      My Button
-    </button>
-  );
-};
-```
----
-
-
-```ts
-const myType = 'foo';
-```
-
----
-
-## But <em>**should**</em> you <br/>use TypeScript?
+## <em>**Should**</em> you <br/>use TypeScript?
 
 Note:
+
 - Million Dollar Question
 - You as a developer or as a team
 - How would you defend to your boss?
 
 ---
 
-# **No.**
+# **You Decide.**
+
+Note:
+
+- What you're doing today works.
+- There may be benefits, but there are tradeoffs too.
+- Short talk, scratching the surface.
 
 ---
 
 ## **TypeScript**<br/> Changes The Way You Think
 
 Note:
+
 - Thinking in Types instead of thinking in Values
 - Adopting new mental models, OOP vs FP, Dynamic vs Static Types
 - Thinking categorically using generics
-
----
-
-## Resources
-
-- TypeScript Playground
 
 ---
 
@@ -388,10 +466,13 @@ Note:
 @snapend
 
 @snap[south-east span-50 text-center]
+
 #### P.S. We're Hiring
+
 @snapend
 
 Note:
+
 - 1:15
 - Thank You to This Dot, Vin Solutions, and most of all to everyone here.
 - We're currently hiring
