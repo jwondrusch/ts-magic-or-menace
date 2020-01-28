@@ -269,7 +269,7 @@ Note:
 
 ---
 
-## Types !== Values
+## **Types !==** Values
 
 ---
 
@@ -385,6 +385,10 @@ Note:
 
 **@jwondrusch**
 
+@snapend
+
+@snap[south-east span-50 text-center]
+#### P.S. We're Hiring
 @snapend
 
 Note:
