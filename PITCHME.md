@@ -294,7 +294,7 @@ Note:
 
 @snap[north span-100]
 
-## Type **Operations**
+## Type Operations
 
 @snapend
 
@@ -308,7 +308,7 @@ myArray.push("f"); // Nope! Compiler Error
 
 @snap[north span-100]
 
-## Type **Operations**
+## Type Operations
 
 @snapend
 
@@ -323,7 +323,7 @@ myArray.push("f"); // [1, 2, 3, 4, 5, 'f']
 
 @snap[north span-100]
 
-## Type **Operations**
+## Type Operations
 
 @snapend
 
@@ -336,11 +336,9 @@ interface Person {
 
 ---
 
----
-
 @snap[north span-100]
 
-## Type **Operations**
+## Type Operations
 
 @snapend
 
