@@ -26,15 +26,6 @@ Note:
 
 ---
 
-## **Playground** vs <strong class="text-yellow">Production</strong>
-
-Note:
-
-- Seen people pulling their hair out
-- Seen the lightbulb that goes off when TypeScript "clicks"
-
----
-
 ## What Is<br/> **TypeScript?**
 
 ---
@@ -67,13 +58,12 @@ Note:
 
 ---
 
-## Why Use TypeScript?
+## Why Use **TypeScript?**
 
 Note:
 
-- Million Dollar Question
-- You as a developer or as a team
 - How would you defend to your boss?
+- You as a developer or as a team
 
 ---
 
@@ -137,8 +127,9 @@ const callPerson = person => console.log(person.phone);
 
 Note:
 
-- Pre-Compile vs Post-Compile
-- TypeScript doesn't let you be irresponsible
+- Pre/Post Compile Time
+- Doesn't affect bundle sizes
+- Warning: TypeScript doesn't let you be irresponsible
 
 ---
 
@@ -146,9 +137,9 @@ Note:
 
 Note:
 
-- TS is always paying attention
-- Knows your code better than you do
 - Uses a built-in NodeJS debugger to monitor your code as you write it
+- TS is always paying attention. Pair programmer that doesn't get distracted.
+- Knows your code better than you do
 - Easy to see with an example
 
 ---
@@ -213,19 +204,18 @@ Note:
 
 ---
 
-## Fail **Early**
+## Fail **Earlier**
 
 Note:
 
 - What is a REPL?
-- TS REPL vs JS REPL
 - Making mistakes is good
 
 ---
 
 @snap[north span-100]
 
-## Fail Early
+## Fail Earlier
 
 @snapend
 
@@ -246,7 +236,7 @@ callPerson("555-555-5555");
 
 @snap[north span-100]
 
-## Fail Early
+## Fail Earlier
 
 @snapend
 
@@ -254,6 +244,7 @@ callPerson("555-555-5555");
 
 Note:
 
+- TS REPL vs JS REPL
 - Instant feedback shortens the loop
 - Works on very complex types, which makes it more valuable than ESLint can be
 - Like React PropTypes, but works from anywhere in your application, on any data types
@@ -293,37 +284,76 @@ strArray.push(num); // Nope! Compiler Error
 Note:
 
 - Ensures that data and operations work correctly together.
+- Implicit instead of Explicit
+
+---
+
+## Type **Operations**
 
 ---
 
 @snap[north span-100]
 
-## Keep Your **Tools**
+## Type **Operations**
 
 @snapend
 
-@snap[west]
+```ts
+const myArray = [1, 2, 3, 4, 5]; // number[]
 
-### JS
+myArray.push("f"); // Nope! Compiler Error
+```
 
-- ESLint
-- Libraries
-- Frameworks
-- Tests
-- `npm watch`
+---
+
+@snap[north span-100]
+
+## Type **Operations**
 
 @snapend
 
-@snap[east text-left]
+```ts
+type AlphanumericArray = Array<string | number>;
+const myArray: AlphanumericArray = [1, 2, 3, 4, 5]; // Array<string|number>
 
-### TS
+myArray.push("f"); // [1, 2, 3, 4, 5, 'f']
+```
 
-- TSLint
-- Libraries
-- Frameworks
-- Tests
-- `tsc watch`
-  @snapend
+---
+
+@snap[north span-100]
+
+## Type **Operations**
+
+@snapend
+
+```ts
+interface Person {
+  name: string;
+  phone: string;
+}
+```
+
+---
+
+---
+
+@snap[north span-100]
+
+## Type **Operations**
+
+@snapend
+
+```ts
+interface Person {
+  name: string;
+  phone: string;
+}
+
+type Hermit = Omit<Person, "phone">;
+
+const joe: Hermit = { name: "Joe", phone: "555-555-5555" }; // Compiler error
+```
 
 ---
 
@@ -376,7 +406,7 @@ interface Person {
 
 const jonathan: Person = { name: "Jonathan", phone: "555-555-5555" };
 
-console.log(typeof jonathan === Person); // false
+console.log(typeof jonathan === "Person"); // false
 console.log(jonathan instanceof Person); // Compiler Error
 
 console.log("Huh?"); // Take a deep breath
